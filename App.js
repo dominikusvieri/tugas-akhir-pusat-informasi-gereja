@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-export default function App() {
+import HomeScreen from './Screens/HomeScreen/HomeScreen';
+import CommunityScreen from './Screens/CommunityScreen/CommunityScreen';
+import MediaScreen from './Screens/MediaScreen/MediaScreen';
+import MinistryScreen from './Screens/MinistryScreen/MinistryScreen';
+import ProfileScreen from './Screens/ProfileScreen/ProfileScreen';
+import DetailScreen from './Screens/HomeScreen/DetailScreen';
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+function StackScreenHome() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen options={{headerShown:false}}  name='HomeScreen' component={HomeScreen}/>
+      <Stack.Screen name='DetailNews' component={DetailScreen}/>
+    </Stack.Navigator>
+  )
+}
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen options={{headerShown:false}} name="Home" component={StackScreenHome} />
+      <Tab.Screen name="Community" component={CommunityScreen} />
+      <Tab.Screen name="Ministry" component={MinistryScreen} />
+      <Tab.Screen name="Media" component={MediaScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+
+  );
+}
