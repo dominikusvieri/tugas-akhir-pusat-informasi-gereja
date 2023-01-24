@@ -10,6 +10,7 @@ import MediaScreen from './Screens/MediaScreen/MediaScreen';
 import MinistryScreen from './Screens/MinistryScreen/MinistryScreen';
 import ProfileScreen from './Screens/ProfileScreen/ProfileScreen';
 import DetailScreen from './Screens/HomeScreen/DetailScreen';
+import DetailScreenCom from './Screens/CommunityScreen/DetailScreen'
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -23,11 +24,20 @@ function StackScreenHome() {
   )
 }
 
+function StackCommunityScreen(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen options={{headerShown:false}} name='CommunityScreen' component={CommunityScreen}/>
+      <Stack.Screen name='DetailComm' component={DetailScreenCom} />
+    </Stack.Navigator>
+  )
+}
+
 function MyTabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen options={{headerShown:false}} name="Home" component={StackScreenHome} />
-      <Tab.Screen name="Community" component={CommunityScreen} />
+      <Tab.Screen options={{headerShown:false}} name="Community" component={StackCommunityScreen} />
       <Tab.Screen name="Ministry" component={MinistryScreen} />
       <Tab.Screen name="Media" component={MediaScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />

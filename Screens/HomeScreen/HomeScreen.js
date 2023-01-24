@@ -1,8 +1,9 @@
-import { View, Text, SafeAreaView, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, Dimensions } from 'react-native'
 import React, { useLayoutEffect, useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import ItemCardComponent from '../../Components/ItemCardComponent'
 import { getNewsData } from '../../API'
+import { TouchableOpacity } from 'react-native-web'
 
 const HomeScreen = () => {
     const navigation = useNavigation()
@@ -10,8 +11,6 @@ const HomeScreen = () => {
     const [mainData, setMainData] = useState([])
 
     const [isLoading, setIsLoading] = useState(false)
-
-    
 
     useEffect(() => {
         setIsLoading(false)
@@ -31,11 +30,24 @@ const HomeScreen = () => {
                     <Text style={{ fontWeight: '600', color: '#fff', fontSize: '16px' }}>Pusat Informasi Gereja Jemaat Purwodadi</Text>
                 </View>
             </View>
+
             <View style={{ paddingHorizontal: '20px', marginTop: '10px' }}>
                 <Text style={{ fontWeight: 'bold', fontSize: '20px', borderBottomWidth: '2px', borderBottomColor: '#b1b1b1' }}>
                     Kabar Terkini Gereja
                 </Text>
             </View>
+
+            <View style={{ paddingHorizontal: '20px', marginTop: '10px', flexDirection: 'row' }}>
+                {mainData?.map(data => (
+                    <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                        <ScrollView>
+                            <Text style={{ borderWidth: 0.5, borderColor: '#000', padding: '5px', borderRadius: '10px', marginHorizontal: '5px' }}>{data?.email}</Text>
+                        </ScrollView>
+                    </TouchableOpacity>
+                ))}
+
+            </View>
+
             {isLoading ? <View className="flex-1 items-center justify-center">
                 <ActivityIndicator size="large" color="#00ff00" />
             </View> :
