@@ -13,7 +13,7 @@ const HomeScreen = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        setIsLoading(false)
+        setIsLoading(true)
         getNewsData().then(data => {
             setMainData(data)
             setInterval(() => {
@@ -49,7 +49,7 @@ const HomeScreen = () => {
             </View>
 
             {isLoading ? <View className="flex-1 items-center justify-center">
-                <ActivityIndicator size="large" color="#00ff00" />
+                <Text>Loading</Text>
             </View> :
                 <ScrollView style={{ flexDirection: 'column', paddingHorizontal: '20px', marginTop: '10px' }}>
                     {mainData?.length > 0 ? (

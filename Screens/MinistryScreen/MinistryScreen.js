@@ -14,7 +14,7 @@ const MinistryScreen = () => {
 
       <View style={{ paddingHorizontal: '20px', marginTop: '10px', alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
         <ItemCardMinistry
-          key={"1"}
+          key={"1"} 
           imageSrc={"https://i.pinimg.com/564x/32/24/89/3224894a867134cdf1e7dbb326e75d06.jpg"}
           title={"Haloooo"}
         />
